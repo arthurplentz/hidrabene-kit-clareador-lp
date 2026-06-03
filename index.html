@@ -9,7 +9,7 @@
   <meta name="googlebot" content="noindex, nofollow" />
 
   <!-- LCP: pré-carrega a 1ª imagem do hero -->
-  <link rel="preload" as="image" href="./assets/images/lifestyle-bancada.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="./assets/images/lifestyle-bancada.webp" fetchpriority="high" />
 
   <!-- Fontes (assíncrono, sem bloquear o render) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,6 +18,23 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Display:ital,wght@1,600&display=swap" /></noscript>
 
   <style>
+    /* ─── FALLBACKS COM MÉTRICA AJUSTADA (anti-CLS na troca de fonte) ─── */
+    @font-face {
+      font-family: 'Poppins-fallback';
+      src: local('Arial');
+      size-adjust: 112.15%; ascent-override: 93.62%; descent-override: 31.21%; line-gap-override: 0%;
+    }
+    @font-face {
+      font-family: 'Barlow-fallback';
+      src: local('Arial');
+      size-adjust: 96%; ascent-override: 105%; descent-override: 26%; line-gap-override: 0%;
+    }
+    @font-face {
+      font-family: 'NotoSerif-fallback';
+      src: local('Georgia');
+      size-adjust: 97%; ascent-override: 100%; descent-override: 27%; line-gap-override: 0%;
+    }
+
     /* ─── TOKENS ─────────────────────────────────────── */
     :root {
       --pink-light:   #F9F6F5;
@@ -30,9 +47,9 @@
       --gray:         #A69DA2;
       --gray-light:   #F0EDED;
       --white:        #FFFFFF;
-      --font-title:   'Poppins', sans-serif;
-      --font-body:    'Barlow', sans-serif;
-      --font-display: 'Noto Serif Display', serif;
+      --font-title:   'Poppins', 'Poppins-fallback', sans-serif;
+      --font-body:    'Barlow', 'Barlow-fallback', sans-serif;
+      --font-display: 'Noto Serif Display', 'NotoSerif-fallback', serif;
       --radius-sm:    8px;
       --radius-md:    16px;
       --radius-lg:    40px;
@@ -1071,10 +1088,15 @@
     .kit-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .kit-name { font-family: var(--font-title); font-size: 20px; font-weight: 800; color: var(--dark); letter-spacing: -0.01em; }
     .kit-sub { font-family: var(--font-title); font-size: 13px; color: var(--gray); margin-bottom: 12px; }
-    .kit-price-old { display: block; font-family: var(--font-title); font-size: 13px; color: var(--gray); text-decoration: line-through; }
-    .kit-price-new { display: block; font-family: var(--font-title); font-size: 26px; font-weight: 800; color: var(--dark); margin: 1px 0; }
-    .kit-price-new em { font-family: var(--font-display); font-style: italic; font-weight: 600; color: var(--pink-fluor); }
-    .kit-price-parc { display: block; font-family: var(--font-title); font-size: 12px; color: var(--gray); margin-bottom: 14px; }
+    .kit-off { position: absolute; top: 12px; right: 12px; background: var(--pink-fluor); color: var(--white); font-family: var(--font-title); font-size: 12px; font-weight: 800; letter-spacing: 0.01em; padding: 4px 9px; border-radius: var(--radius-sm); line-height: 1; }
+    .kit-unit { margin: 2px 0 8px; }
+    .kit-unit-val { display: block; font-family: var(--font-title); font-size: 30px; font-weight: 800; color: var(--pink-fluor); letter-spacing: -0.015em; line-height: 1.05; }
+    .kit-unit-val small { font-size: 14px; font-weight: 700; color: var(--dark); letter-spacing: 0; }
+    .kit-unit-was { display: block; font-family: var(--font-title); font-size: 12px; color: var(--gray); margin-top: 2px; }
+    .kit-unit-was s { color: var(--gray); }
+    .kit-price-line { display: block; font-family: var(--font-title); font-size: 13.5px; color: var(--dark); margin-bottom: 16px; }
+    .kit-price-line s { color: var(--gray); font-weight: 500; }
+    .kit-price-line strong { font-weight: 800; }
     .kit-cta { width: 100%; margin-top: auto; }
     .kit-guarantee { display: flex; align-items: center; justify-content: center; gap: 6px; font-family: var(--font-title); font-size: 11.5px; color: var(--gray); margin-top: 6px; }
     .kit-guarantee svg { width: 13px; height: 13px; flex-shrink: 0; stroke: var(--pink-fluor); }
@@ -1123,7 +1145,7 @@
   <!-- ░░ NAV (logo + botão de compra) ░░ -->
   <nav class="nav" aria-label="Navegação principal">
     <div class="nav-logo" aria-label="Hidrabene">
-      <img src="./assets/brand/logo-hidrabene-nav.png" alt="Hidrabene" width="280" height="47" />
+      <img src="./assets/brand/logo-hidrabene-nav.webp" alt="Hidrabene" width="280" height="47" />
     </div>
     <button class="nav-cta" onclick="document.getElementById('oferta').scrollIntoView({ behavior: 'smooth' })">Comprar agora</button>
   </nav>
@@ -1131,7 +1153,7 @@
   <!-- ░░ HERO — KIT / BOX ░░ -->
   <section class="hero-kit" aria-label="Kit Clareador Facial Hidrabene">
     <div class="hero-kit-media">
-      <img src="./assets/images/lifestyle-bancada.jpg" alt="Kit Clareador Facial — sabonete, sérum e protetor FPS 70" width="946" height="1200" fetchpriority="high" loading="eager" />
+      <img src="./assets/images/lifestyle-bancada.webp" alt="Kit Clareador Facial — sabonete, sérum e protetor FPS 70" width="946" height="1200" fetchpriority="high" loading="eager" />
       <div class="hero-kit-badge">
         <span class="big">7 DIAS</span>
         <span class="mid">de garantia</span>
@@ -1165,10 +1187,10 @@
   <section class="ugc-section" aria-label="Quem usa">
     <p class="ugc-label">Quem usa e aprova</p>
     <div class="ugc-scroll" role="list">
-      <div class="ugc-card" role="listitem"><video class="ugc-video" muted loop playsinline webkit-playsinline preload="none" poster="./assets/images/poster-ugc-1.jpg"><source src="./assets/video/ugc/u1.mp4" type="video/mp4" /></video></div>
-      <div class="ugc-card" role="listitem"><video class="ugc-video" muted loop playsinline webkit-playsinline preload="none" poster="./assets/images/poster-ugc-2.jpg"><source src="./assets/video/ugc/u2.mp4" type="video/mp4" /></video></div>
-      <div class="ugc-card" role="listitem"><video class="ugc-video" muted loop playsinline webkit-playsinline preload="none" poster="./assets/images/poster-ugc-3.jpg"><source src="./assets/video/ugc/u3.mp4" type="video/mp4" /></video></div>
-      <div class="ugc-card" role="listitem"><video class="ugc-video" muted loop playsinline webkit-playsinline preload="none" poster="./assets/images/poster-ugc-4.jpg"><source src="./assets/video/ugc/u4.mp4" type="video/mp4" /></video></div>
+      <div class="ugc-card" role="listitem"><video class="ugc-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="./assets/images/poster-ugc-1.webp"><source src="./assets/video/ugc/u1.mp4" type="video/mp4" /></video></div>
+      <div class="ugc-card" role="listitem"><video class="ugc-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="./assets/images/poster-ugc-2.webp"><source src="./assets/video/ugc/u2.mp4" type="video/mp4" /></video></div>
+      <div class="ugc-card" role="listitem"><video class="ugc-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="./assets/images/poster-ugc-3.webp"><source src="./assets/video/ugc/u3.mp4" type="video/mp4" /></video></div>
+      <div class="ugc-card" role="listitem"><video class="ugc-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="./assets/images/poster-ugc-4.webp"><source src="./assets/video/ugc/u4.mp4" type="video/mp4" /></video></div>
     </div>
   </section>
 
@@ -1255,7 +1277,7 @@
   </section>
 
   <!-- Imagem editorial — tratamento 360º -->
-  <img class="beneficios-img" src="./assets/images/editorial-resultado.jpg" alt="Resultados visíveis e potencializados com o uso combinado do Kit Clareador" width="900" height="1200" loading="lazy" />
+  <img class="beneficios-img" src="./assets/images/editorial-resultado.webp" alt="Resultados visíveis e potencializados com o uso combinado do Kit Clareador" width="900" height="1200" loading="lazy" />
 
   <!-- ░░ ATIVOS ░░ -->
   <section class="ativos-section section-pad" aria-label="Principais ativos">
@@ -1383,12 +1405,15 @@
     <div class="kit-grid" role="list">
       <!-- 1 Kit -->
       <div class="kit-card" role="listitem">
-        <div class="kit-media"><img src="./assets/images/kit-1un.png" alt="Kit Clareador Facial — 1 kit (sabonete, sérum e protetor FPS 70)" width="1080" height="1350" loading="lazy" /></div>
+        <span class="kit-off">-29%</span>
+        <div class="kit-media"><img src="./assets/images/kit-1un.webp" alt="Kit Clareador Facial — 1 kit (sabonete, sérum e protetor FPS 70)" width="1080" height="1350" loading="lazy" /></div>
         <p class="kit-name">1 Kit</p>
-        <p class="kit-sub">Protocolo completo · 3 produtos</p>
-        <span class="kit-price-old">De R$ XX,XX</span>
-        <span class="kit-price-new">por <em>R$ XX,XX</em></span>
-        <span class="kit-price-parc">ou 12x de R$ XX,XX</span>
+        <p class="kit-sub">Tratamento de 1 mês · 3 produtos</p>
+        <div class="kit-unit">
+          <span class="kit-unit-val">R$ 99,90</span>
+          <span class="kit-unit-was">no kit completo</span>
+        </div>
+        <span class="kit-price-line">De <s>R$ 139,90</s> por <strong>R$ 99,90</strong></span>
         <button class="cta-primary kit-cta" onclick="comprarAgora('1-kit')">Comprar 1 Kit</button>
         <p class="kit-guarantee"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg> Garantia incondicional de 7 dias</p>
       </div>
@@ -1396,12 +1421,15 @@
       <!-- 2 Kits -->
       <div class="kit-card" role="listitem">
         <span class="kit-banner alt">Mais vendido</span>
-        <div class="kit-media"><img src="./assets/images/kit-2un.jpg" alt="Kit Clareador Facial — 2 kits" width="1080" height="1350" loading="lazy" /></div>
+        <span class="kit-off">-43%</span>
+        <div class="kit-media"><img src="./assets/images/kit-2un.webp" alt="Kit Clareador Facial — 2 kits" width="1080" height="1350" loading="lazy" /></div>
         <p class="kit-name">2 Kits</p>
-        <p class="kit-sub">Pra você + alguém · ou 2 meses de uso</p>
-        <span class="kit-price-old">De R$ XX,XX</span>
-        <span class="kit-price-new">por <em>R$ XX,XX</em></span>
-        <span class="kit-price-parc">ou 12x de R$ XX,XX</span>
+        <p class="kit-sub">Tratamento de 2 meses</p>
+        <div class="kit-unit">
+          <span class="kit-unit-val">R$ 79,95<small>/kit</small></span>
+          <span class="kit-unit-was">em vez de <s>R$ 99,90</s> cada</span>
+        </div>
+        <span class="kit-price-line">De <s>R$ 279,90</s> por <strong>R$ 159,90</strong> nos 2 kits</span>
         <button class="cta-primary kit-cta" onclick="comprarAgora('2-kits')">Comprar 2 Kits</button>
         <p class="kit-guarantee"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg> Garantia incondicional de 7 dias</p>
       </div>
@@ -1409,12 +1437,15 @@
       <!-- 3 Kits (destaque) -->
       <div class="kit-card featured" role="listitem">
         <span class="kit-banner">Melhor custo-benefício</span>
-        <div class="kit-media"><img src="./assets/images/kit-3un.jpg" alt="Kit Clareador Facial — 3 kits" width="1080" height="1350" loading="lazy" /></div>
+        <span class="kit-off">-52%</span>
+        <div class="kit-media"><img src="./assets/images/kit-3un.webp" alt="Kit Clareador Facial — 3 kits" width="1080" height="1350" loading="lazy" /></div>
         <p class="kit-name">3 Kits</p>
-        <p class="kit-sub">Tratamento intensivo · 3 meses</p>
-        <span class="kit-price-old">De R$ XX,XX</span>
-        <span class="kit-price-new">por <em>R$ XX,XX</em></span>
-        <span class="kit-price-parc">ou 12x de R$ XX,XX</span>
+        <p class="kit-sub">Tratamento de 3 meses</p>
+        <div class="kit-unit">
+          <span class="kit-unit-val">R$ 66,63<small>/kit</small></span>
+          <span class="kit-unit-was">em vez de <s>R$ 99,90</s> cada</span>
+        </div>
+        <span class="kit-price-line">De <s>R$ 419,70</s> por <strong>R$ 199,90</strong> nos 3 kits</span>
         <button class="cta-primary kit-cta" onclick="comprarAgora('3-kits')">Comprar 3 Kits</button>
         <p class="kit-guarantee"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg> Garantia incondicional de 7 dias</p>
       </div>
@@ -1422,10 +1453,10 @@
 
     <!-- Selos da marca -->
     <div class="seals-strip" role="list" aria-label="Certificações da marca">
-      <img src="./assets/brand/selo-cruelty-free-vegan.png" alt="Cruelty free e vegano" loading="lazy" />
-      <img src="./assets/brand/selo-derm-testado.png" alt="Dermatologicamente testado" loading="lazy" />
-      <img src="./assets/brand/selo-im-green.png" alt="I'm green — plástico de origem vegetal" loading="lazy" />
-      <img src="./assets/brand/selo-industria-brasileira.png" alt="Indústria brasileira" loading="lazy" />
+      <img src="./assets/brand/selo-cruelty-free-vegan.webp" alt="Cruelty free e vegano" loading="lazy" />
+      <img src="./assets/brand/selo-derm-testado.webp" alt="Dermatologicamente testado" loading="lazy" />
+      <img src="./assets/brand/selo-im-green.webp" alt="I'm green — plástico de origem vegetal" loading="lazy" />
+      <img src="./assets/brand/selo-industria-brasileira.webp" alt="Indústria brasileira" loading="lazy" />
     </div>
   </section>
 
@@ -1518,7 +1549,7 @@
   <!-- ░░ FOOTER ░░ -->
   <footer class="footer" aria-label="Rodapé">
     <div class="footer-logo" aria-label="Hidrabene Derma">
-      <img src="./assets/brand/logo-hidrabene-derma.png" alt="Hidrabene Derma" width="280" height="72" />
+      <img src="./assets/brand/logo-hidrabene-derma.webp" alt="Hidrabene Derma" width="280" height="72" />
     </div>
 
     <div class="footer-social" aria-label="Redes sociais">
@@ -1557,16 +1588,26 @@
       });
     })();
 
-    // Autoplay de vídeos (UGC + antes/depois) só quando visíveis na tela
+    // Autoplay de vídeos (UGC + antes/depois) só quando visíveis na tela.
+    // iOS/Safari só faz autoplay inline com o vídeo muted de fato — por isso forçamos
+    // a propriedade muted antes de cada play() (não basta o atributo no HTML).
     (function () {
       const vids = document.querySelectorAll('.ugc-video, .vid-inview');
-      if (!('IntersectionObserver' in window) || !vids.length) return;
+      if (!vids.length) return;
+
+      function tryPlay(v) {
+        if (!v.dataset.userSound) { v.muted = true; v.defaultMuted = true; }
+        const p = v.play();
+        if (p && p.catch) p.catch(() => { try { v.load(); v.play().catch(() => {}); } catch (e) {} });
+      }
+
+      if (!('IntersectionObserver' in window)) { vids.forEach(tryPlay); return; }
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => {
-          if (e.isIntersecting) { e.target.play().catch(() => {}); }
-          else { e.target.pause(); }
+          if (e.isIntersecting) tryPlay(e.target);
+          else e.target.pause();
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.25 });
       vids.forEach(v => io.observe(v));
     })();
 
@@ -1576,6 +1617,7 @@
       if (!v) return;
       v.muted = !v.muted;
       const on = !v.muted;
+      if (on) { v.dataset.userSound = '1'; } else { delete v.dataset.userSound; }
       btn.classList.toggle('is-on', on);
       btn.setAttribute('aria-pressed', String(on));
       btn.setAttribute('aria-label', on ? 'Desativar som' : 'Ativar som');

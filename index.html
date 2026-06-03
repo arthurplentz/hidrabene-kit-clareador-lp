@@ -1087,9 +1087,6 @@
       .offer-showcase { max-width: 460px; }
     }
     /* ─── HERO KIT/BOX (wireframe A4) ───────────────── */
-    .hero-kit-bar { display: flex; align-items: center; justify-content: center; gap: 8px; background: #D81E2C; color: #fff; text-align: center; font-family: var(--font-title); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 10px 16px; cursor: pointer; }
-    .hero-kit-bar svg { width: 15px; height: 15px; flex-shrink: 0; }
-
     .hero-kit { background: var(--white); }
     .hero-kit-media { position: relative; width: 100%; aspect-ratio: 4 / 3; background: var(--pink-soft); overflow: hidden; }
     .hero-kit-media > img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -1122,12 +1119,6 @@
   </style>
 </head>
 <body>
-
-  <!-- ░░ TARJA DE ESCASSEZ ░░ -->
-  <div class="hero-kit-bar" onclick="document.getElementById('oferta').scrollIntoView({ behavior: 'smooth' })">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
-    Últimas 7 unidades
-  </div>
 
   <!-- ░░ NAV (logo + botão de compra) ░░ -->
   <nav class="nav" aria-label="Navegação principal">
@@ -1397,7 +1388,7 @@
     <div class="kit-grid" role="list">
       <!-- 1 Kit -->
       <div class="kit-card" role="listitem">
-        <div class="kit-media"><img src="./assets/images/kit-1un.jpg" alt="Kit Clareador Facial — 1 kit (sabonete, sérum e protetor FPS 70)" width="1080" height="1350" loading="lazy" /></div>
+        <div class="kit-media"><img src="./assets/images/kit-1un.png" alt="Kit Clareador Facial — 1 kit (sabonete, sérum e protetor FPS 70)" width="1080" height="1350" loading="lazy" /></div>
         <p class="kit-name">1 Kit</p>
         <p class="kit-sub">Protocolo completo · 3 produtos</p>
         <span class="kit-price-old">De R$ XX,XX</span>
